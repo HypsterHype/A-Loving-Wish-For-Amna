@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Letter For You 💌</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=IM+Fell+English:ital@0;1&family=Sacramento&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #2a1a1a;
+    --soft: #6a4a4a;
+    --accent: #c0636a;
+    --pale: #f9f3ef;
+    --cream: #fdf8f4;
+    --border: #e8d5cc;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--pale);
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* Decorative top bar */
+  .top-bar {
+    height: 6px;
+    background: linear-gradient(90deg, #c0636a, #d4a0a5, #c0636a);
+  }
+
+  /* Paper texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 27px,
+        rgba(180,140,130,0.07) 28px
+      );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .letter-wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 80px 60px 100px;
+  }
+
+  @media (max-width: 600px) {
+    .letter-wrap { padding: 50px 28px 70px; }
+  }
+
+  /* Corner ornaments */
+  .corner {
+    position: fixed;
+    font-size: 2.5rem;
+    opacity: 0.12;
+    line-height: 1;
+  }
+  .corner.tl { top: 20px; left: 20px; }
+  .corner.tr { top: 20px; right: 20px; }
+  .corner.bl { bottom: 20px; left: 20px; }
+  .corner.br { bottom: 20px; right: 20px; }
+
+  /* Header */
+  .letter-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .header-ornament {
+    font-size: 1.5rem;
+    letter-spacing: 12px;
+    opacity: 0.3;
+    display: block;
+    margin-bottom: 28px;
+  }
+
+  .letter-title {
+    font-family: 'Sacramento', cursive;
+    font-size: 5rem;
+    color: var(--accent);
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .letter-date {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: #a08080;
+    letter-spacing: 1px;
+  }
+
+  .header-rule {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .header-rule::before,
+  .header-rule::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border));
+  }
+  .header-rule::after {
+    background: linear-gradient(90deg, var(--border), transparent);
+  }
+  .rule-ornament { font-size: 1.2rem; opacity: 0.5; }
+
+  /* Body */
+  .salutation {
+    font-family: 'Sacramento', cursive;
+    font-size: 2.8rem;
+    color: var(--accent);
+    margin-bottom: 40px;
+    display: block;
+  }
+
+  p {
+    font-size: 1.18rem;
+    line-height: 2.1;
+    color: var(--ink);
+    margin-bottom: 32px;
+    font-weight: 300;
+  }
+
+  .drop-cap::first-letter {
+    font-family: 'Sacramento', cursive;
+    font-size: 5.5rem;
+    float: left;
+    line-height: 0.75;
+    margin: 8px 10px 0 -4px;
+    color: var(--accent);
+  }
+
+  em {
+    font-style: italic;
+    color: #7a3a42;
+  }
+
+  strong {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  /* Section breaks */
+  .divider {
+    text-align: center;
+    margin: 50px 0;
+    font-size: 1.1rem;
+    letter-spacing: 10px;
+    opacity: 0.2;
+  }
+
+  /* Pull quotes */
+  .pull-quote {
+    border-left: 3px solid var(--accent);
+    padding: 16px 28px;
+    margin: 42px 0;
+    background: rgba(192, 99, 106, 0.04);
+    border-radius: 0 8px 8px 0;
+  }
+  .pull-quote p {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: #7a3a42;
+    margin: 0;
+    line-height: 1.8;
+  }
+
+  /* Sign-off */
+  .sign-off {
+    margin-top: 64px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+    text-align: right;
+  }
+  .sign-off .closing-line {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--soft);
+    display: block;
+    margin-bottom: 12px;
+  }
+  .sign-off .signature {
+    font-family: 'Sacramento', cursive;
+    font-size: 3.8rem;
+    color: var(--accent);
+    display: block;
+    line-height: 1.1;
+  }
+  .sign-off .postscript {
+    margin-top: 36px;
+    text-align: left;
+    font-size: 1rem;
+    font-style: italic;
+    color: #9a7070;
+    padding: 20px;
+    background: rgba(192,99,106,0.04);
+    border-radius: 8px;
+    line-height: 1.8;
+  }
+
+  /* Footer petal row */
+  .letter-footer {
+    text-align: center;
+    margin-top: 80px;
+    opacity: 0.2;
+    font-size: 1.4rem;
+    letter-spacing: 6px;
+  }
+
+  /* Scroll fade in */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .letter-wrap { animation: fadeUp 1s ease forwards; }
+</style>
+</head>
+<body>
+
+<div class="top-bar"></div>
+
+<span class="corner tl">✦</span>
+<span class="corner tr">✦</span>
+<span class="corner bl">✦</span>
+<span class="corner br">✦</span>
+
+<div class="letter-wrap">
+
+  <div class="letter-header">
+    <span class="header-ornament">✦ ✦ ✦</span>
+    <div class="letter-title">A Letter For Amna</div>
+    <div class="letter-date">Written for Amna Mohammed, on the occasion of her birthday, with everything I have.</div>
+    <div class="header-rule"><span class="rule-ornament">🌸</span></div>
+  </div>
+
+  <span class="salutation">My dearest Amna,</span>
+
+  <p class="drop-cap">I have rewritten this letter more times than I can count. Not because I didn't know what to say, but because every time I started, it felt too small. Too ordinary. Too contained for something that doesn't feel containable. How do you write a letter that tells someone what they actually mean to you? Not in a greeting-card way, not in a pretty-words way, but in a way that lands the way a hand on someone's shoulder lands? I'm not sure I can. But I'm going to try. More than try, I will. For you, Amna, I will. I always will. I won't just try, but I will do it.</p>
+
+  <p>Today is your birthday. And I want you to understand something before I go any further: I am not writing this because it's the thing people do on birthdays. I'm not writing it out of obligation or routine. I'm writing this because the thought of you going through today without knowing, <em>really knowing</em>, how I see you felt unbearable to me. Well, you already know how I see you, sweetheart. You already know how beautiful you are to me and how much I love you. I don't care how others see you. If others like your family cherish you, that's good, but what truly matters is that I show you how I see you. Because no matter what happens, love, this man, this man, will always be here loving you, adoring you, whether other people do or do not. This man will always love you, stand by you, even if the world doesn't.</p>
+
+  <div class="pull-quote">
+    <p>"There are people who change the texture of your days. You don't notice it at first, and then one day you realize that everything is slightly different. Brighter in some places, fuller in others. That's what you did."</p>
+  </div>
+
+  <p>I want to talk about what it was like before you. Not in a dramatic, my-life-was-empty way, because it wasn't empty. But there's a specific kind of loneliness that has nothing to do with being surrounded by people. It's the loneliness of not having someone who actually <em>gets</em> it. Who gets you. The exact frequency of your humor. The specific texture of how you think. The way you say something and it lands exactly the way you intended it to land. I had people around me. But I didn't have that.</p>
+
+  <p>And then there was you. And then there was Amna.</p>
+
+  <p>I think about the beginning a lot. The very earliest conversations, before anything was defined, before either of us knew what this was going to become. There was something already there, even then. Some quality of attention in the way you responded. Like you were actually reading what I said, actually sitting with it before you answered. That sounds small. It isn't small. Most people skim. You don't skim. And I noticed that almost immediately, even if I didn't have the words for it yet.</p>
+
+  <p>I noticed how you talked about the things you love. The way your entire energy shifts when something genuinely excites you, there's a warmth that comes through even through text, even through a screen, even across whatever distance lives between us. It's unmistakable. You can't fake that kind of aliveness. And it was one of the first things I loved about you before I even knew I was falling.</p>
+
+  <div class="divider">✦ ✦ ✦</div>
+
+  <p>Here's something I don't think I've said clearly enough: <strong>Amna, you are one of the most interesting people I have ever met.</strong> Not interesting in the way people say it politely. Interesting in the way that makes me want to ask more questions. Where you hold opinions that surprise me. Where your perspective on something I thought I understood completely reshapes how I see it. Where your taste in music, in what you find funny, in what you pay attention to, is so distinctly, specifically, <em>uncompromisingly</em> yours that it's almost startling.</p>
+
+  <p>You are not a version of someone else. You're not a combination of familiar types. You are a full, specific, irreducible person. And that is rarer than you think. Most people spend so much energy becoming what they think they're supposed to be that they lose the thread of who they actually are. You haven't lost that thread. You're still following it. And watching you follow it, even from a distance, even through a screen, has been one of the quiet privileges of my life this year.</p>
+
+  <div class="pull-quote">
+    <p>"You don't realize, I think, how rarely people are fully themselves around others. You are. And it's one of the most quietly radical things about you."</p>
+  </div>
+
+  <p>I want to tell you about a specific kind of moment that you probably don't think twice about, but that I hold onto. It's the moments where you say something in passing, something offhand, something you didn't intend to be profound, and it stays with me for hours. Sometimes days. The way you phrase things occasionally catches me completely off guard. Like you found the exact right combination of words for something I've been trying to articulate for years. You do that more often than you know. You make the ordinary feel precise. You find language for things people usually leave unnamed.</p>
+
+  <p>That is a gift. Your mind is a gift. And I am grateful every single day that I get to be on the receiving end of it.</p>
+
+  <p>There's also the softness in you, Amna. I know you don't always lead with it. Not everyone gets to see it, and I understand that. Softness requires safety, and safety requires trust, and trust takes time and evidence and showing up again and again. But the softness you've let me see? I carry it carefully. The moments where you're honest about something that costs you to say. The moments where your guard drops and something real and tender comes through. Those moments are the most beautiful things about you, and I want you to know that they're safe with me. They have always been safe with me.</p>
+
+  <div class="divider">✦ ✦ ✦</div>
+
+  <p>Yeah Amna, the distance between us gets to me sometimes. Like, hey, I want to be with my girl. I miss her so much. I want to be there with her, I want to feel her presence close to me. So of course it's not like the distance doesn't matter. It does affect me, and it weighs on me because it's there. But...</p>
+
+  <p>But here's what I've come to understand about us and that distance: what we have built has been built on the pure love and dedication we have for each other. From every choice we made, to the smallest moments of attention, to the gentleness we carry for one another. From words to actions, what we have built was already written long before we understood it. Fate had already bonded us. It was only ever a matter of time until we found each other, and once we did, it became something stronger than anything either of us could have built alone. Stronger than atoms. Stronger than distance. Stronger than anything.</p>
+
+  <div class="pull-quote">
+    <p>"What we built, we built entirely on purpose. There was no accident here. Every word was a choice. Every late night was a choice. Every time we could have let it fade and didn't, that was a choice. I want you to know I'd make every single one of them again."</p>
+  </div>
+
+  <p>I think about what it will be like to finally meet you, Amna. I think about it more than I probably admit. Not in an anxious way, in a quiet, certain, unhurried way. Like it's already decided. Like it's just a matter of time. I think about what it will feel like to see you in three dimensions, in a specific light, in a real place. To hear your laugh not through audio compression but in full, unfiltered sound. To be able to hand you something, coffee, a jacket, a stupid little gift, and have it be physical and real and right there between us. I think about that a lot. And it doesn't feel like a dream. It feels like a plan.</p>
+
+  <p>I want us to go places together. I want to eat food with you that we had to look up how to pronounce. I want to get slightly lost somewhere and not mind because you're there. I want to watch you react to things in real time, something funny, something beautiful, something that catches you off guard. I want to see the full version of the person I've been talking to all this time, and I already know I'm going to be a little overwhelmed, in the best possible way. You are going to be even more than what I already know you to be, Amna, and I already think you're extraordinary.</p>
+
+  <div class="divider">✦ ✦ ✦</div>
+
+  <p>You are the person I want to tell things to. Not just the big things, though I want that too. The small things. The weird observations. The half-formed thoughts. The things that aren't worth telling most people but would land perfectly with you. That's one of the truest measures of closeness I know: not who you go to with your crises, but who you go to with your random Tuesday 3pm thoughts. You're that person for me. You have been for a while now.</p>
+
+  <p>You make me want to be more thoughtful. More present. More deliberate with my words. Not because you demand it, you don't. But because being around you makes me more aware of what I'm saying and how and why. You raise the bar just by existing. You make the space around you better. You make <em>me</em> better, quietly, without asking for credit, without even knowing it's happening.</p>
+
+  <p>I hope you know what a rare thing that is. I hope you know that not everyone does that. Most people, good people, people I care about, don't change the quality of the air. You do. You come into a conversation and something shifts. You bring something with you. I don't always have the precise word for what that something is. But I feel it every single time.</p>
+
+  <div class="divider">✦ ✦ ✦</div>
+
+  <p>We are celebrating your birthday today, Amna Mohammed, and I want you to know what that means to me. It means the world existed for however many years without you in it, and then you arrived. And then, eventually, you arrived in my life specifically. And that second arrival, the moment you showed up in my particular corner of the world, is something I am endlessly grateful for. I don't know all the mechanics of how things work, why certain people find each other, what combination of randomness and intention leads two people from wherever they are to talking to each other across a screen at whatever hour it was. But I know that it happened. I know that it led here. And here is good. Here is really, really good.</p>
+
+  <p>On your birthday, I want you to feel celebrated, not in a performed, hollow way, but genuinely, deeply celebrated. I want you to feel the weight of how much you matter. I want you to walk through today knowing that someone, somewhere, woke up this morning and thought about you before anything else. That someone wrote you something real. That someone has been thinking about how to make this day feel worthy of you.</p>
+
+  <p>You deserve that, Amna. You deserve to be celebrated like this every single day, not just today. You deserve someone who pays attention. Who remembers the details. Who notices when you're quieter than usual and asks. Who champions you with no agenda. Who sees the full picture of who you are, the funny and the soft and the sharp and the tender, and finds all of it not just acceptable but astonishing. And most of all, you deserve me, Amna. You deserve me, sweetheart. You deserve me, my love.</p>
+
+  <p>I am that person. I will be that person. I am already that person for you, my love, and I'll keep being more of that person day by day, second by second. Not just on your birthday, but on every other day, I'll be the person who's all of that and more, my love, Amna.</p>
+
+  <p>I also know that life is tough for you right now. Actually, tough is an understatement. Just like you said, my love, it feels like hell right now. You told me it feels like everything is breaking apart at once. Having to go back to Pakistan, dealing with your dad and everything that comes with that, the weight of it all being placed on your shoulders when none of it is your fault. And you are completely, entirely justified in not feeling excited about your birthday, Amna. You are allowed to feel exactly what you feel. I would never take that from you or brush over it like it doesn't matter. It does matter. You matter. Every single thing you are carrying right now matters.</p>
+
+  <p>But I want you to know something. Being justified in feeling that way does not mean I will sit back and let this birthday pass without doing everything I possibly can to make it beautiful for you. I will go to every length, pull every string, do everything within my power to make sure this day feels as special as you are. I may not be able to place a gift in your hands right now, and that genuinely hurts me, but I will be here, fully here, your person on the other side of the screen, making sure you feel loved and celebrated and held. Because that is what you deserve, my pretty girl. That is what you have always deserved.</p>
+
+  <p>You are not just special on your birthday, Amna. To me, you are special every single day. My cherished, precious girl. I love you so genuinely and so deeply, more than I have words for, and I am always here for you. Through the hell and the hard days and the things that feel too heavy to carry alone, I am right here. I promise you, it will all be alright. Keep praying, my love. Keep holding on. InshAllah, everything will work itself out, and I will be beside you through all of it.</p>
+
+  <p>And your future? Your future is already decided, Amna. It is with me. From your present to every moment that comes after it, I will make sure that every second spent with me is a second full of warmth and peace and happiness. Away from everything that has ever hurt you. You deserve to smile, and not just any smile. That beautiful, full, unbothered smile of yours that lights up everything around it. That smile is what you deserve to wear every single day. And I will spend every day making sure you have every reason to.</p>
+
+  <div class="sign-off">
+    <span class="closing-line">With every honest, overwhelming, imperfect, genuine piece of me,</span>
+    <span class="signature">Yours, always. Hussain 🌸</span>
+
+    <div class="postscript">
+      <strong>P.S.</strong> Amna, if you're crying right now, good. These words were meant to earn that. You are worth every one of them and about a thousand more I didn't have the room to write. Happy birthday, Amna Mohammed. Now go do something that makes your whole face light up. You know the look I mean. Do that. Today and every day. With love, Hussain. 🕯️
+    </div>
+  </div>
+
+  <div class="letter-footer">🌸 ✦ 🌸 ✦ 🌸</div>
+
+</div>
+</body>
+</html>
